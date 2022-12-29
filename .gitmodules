@@ -1,0 +1,3 @@
+[submodule "sefaria/Sefaria-Project"]
+	path = sefaria/Sefaria-Project
+	url = https://github.com/Sefaria/Sefaria-Project.git

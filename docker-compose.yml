@@ -10,3 +10,18 @@ services:
   redis:
     container_name: torahbot-redis
     image: redis:7.0.5
+  sefaria:
+    container_name: sefaria
+    build:
+      context: sefaria/
+    volumes:
+            - ./sefaria/local_settings.py:/www/sefaria/local_settings.py
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - REDIS_HOSTNAME=redis
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+      - redis
